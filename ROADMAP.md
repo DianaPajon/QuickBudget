@@ -4,7 +4,7 @@
 ## Current week plans
 
 
-_(updated 2022-05-30)_
+_(updated 2022-06-08)_
 
 ### Objectives:
    - Study some react native, make a simple project that calls a backend..
