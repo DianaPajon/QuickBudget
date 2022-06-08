@@ -7,12 +7,21 @@
 _(updated 2022-05-30)_
 
 ### Objectives:
-   - Complete the data model.
-   - Try to implement a mock cordova server that communicates with a spring boot app over wifi. Start building from theere.
+   - Study some react native, make a simple project that calls a backend..
+   - Make a spring boot backend that can listen to the app and transmit the model described in those useless interfaces i wrote.
 
 ## Development blog 
 
 _(latest post first)_
+
+### 2022-06-07 23:45
+
+Put in an extra hour last week, i tried to make a parent maven project and i stubled the eclipse options, ended up doing a simple maven project, i will make a parent project
+later and edit the poms manually. I wrote the interfaces that i will use to describe the data model. I just finished writing those and i'm not sure if it was such a great idea, 
+but now i can write some logic and see if those interfaces work well to descrbie what i need to describe. Also, just found out that cordova doesn't exist enymore, so I started
+studying react today, put in an extra hour and a half. Five hours per week seems too much right now, so I'm cutting hours to "at least 1, and as many as i can put in".
+
+
 
 ### 2022-05-30 19:16: Motivation and idea.
 
