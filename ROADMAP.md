@@ -8,11 +8,17 @@ _(updated 2022-06-08)_
 
 ### Objectives:
    - Study some react native, make a simple project that calls a backend..
-   - Make a spring boot backend that can listen to the app and transmit the model described in those useless interfaces i wrote.
+   - Make a stub for the business layer.
+   - Add more javadocs. Only some packages were written so far.
 
 ## Development blog 
 
 _(latest post first)_
+
+### 2022-06-11 20:48 
+
+I added worked a little today on the backend stub.  Created a basic spring boot project which returns an empty account. Also, I could fit the interfaces on a design that seems logical. 
+Added javadocs to the packages. More documentation is needed. Also, I need to create the business layer.
 
 ### 2022-06-07 23:45
 
