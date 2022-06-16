@@ -15,6 +15,11 @@ _(updated 2022-06-08)_
 
 _(latest post first)_
 
+### 2022-06-15 23:55
+
+Today I put many hours in. I started by having a clearear idea of the architecture, now I know the backend will only be used for synching data. So no business layer.I worked it like that. Still needs JPA end session handling.
+Also commited today the fontend stub I wrote in react native.
+
 ### 2022-06-11 20:48 
 
 I added worked a little today on the backend stub.  Created a basic spring boot project which returns an empty account. Also, I could fit the interfaces on a design that seems logical. 
