@@ -13,11 +13,11 @@ import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;
-import com.aura.quickbudget.backend.model.api.repository.AccountRepository;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowableMovementsNotConsecutive;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowableNotFound;
+import com.aura.quickbudget.backend.service.repository.api.AccountRepository;
 import com.aura.quickbudget.backend.model.api.Account;
 import com.aura.quickbudget.backend.model.api.Movement;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 
 
 @Component

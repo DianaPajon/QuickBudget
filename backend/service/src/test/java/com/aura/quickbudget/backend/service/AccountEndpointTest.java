@@ -1,5 +1,6 @@
 package com.aura.quickbudget.backend.service;
 
+import com.aura.quickbudget.backend.service.main.App;
 import com.jayway.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Test;

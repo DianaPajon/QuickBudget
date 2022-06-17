@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.model.api.repository;
+package com.aura.quickbudget.backend.service.repository.api;
 
 import java.util.List;
 import java.util.Set;
@@ -6,8 +6,8 @@ import java.util.Set;
 import com.aura.quickbudget.backend.model.api.Account;
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;
 import com.aura.quickbudget.backend.model.api.Movement;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowableMovementsNotConsecutive;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowableNotFound;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 import com.quickbudget.backend.model.api.Income;
 
 

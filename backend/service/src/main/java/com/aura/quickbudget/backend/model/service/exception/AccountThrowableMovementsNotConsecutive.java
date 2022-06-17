@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.model.api.repository.exception;
+package com.aura.quickbudget.backend.model.service.exception;
 
 import java.math.BigInteger;
 

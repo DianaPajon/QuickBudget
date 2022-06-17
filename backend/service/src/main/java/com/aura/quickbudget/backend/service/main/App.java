@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.service;
+package com.aura.quickbudget.backend.service.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

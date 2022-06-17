@@ -1,12 +1,18 @@
-package com.aura.quickbudget.backend.service.endpoint.operationdto;
+package com.aura.quickbudget.backend.model.service.dto.getaccount;
 
 import java.util.List;
+import java.util.Set;
+
+import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
+import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
 
 public class AccountRequestDTO {
+	
 	private String accountName;
 	private List<MovementDTO> movements;
-	private List<ExpenseIncomeDTO> expenses;
-	private List<ExpenseIncomeDTO> incomes;
+	private Set<ExpenseIncomeDTO> expenses;
+	private Set<ExpenseIncomeDTO> incomes;
+	
 	public String getAccountName() {
 		return accountName;
 	}
@@ -19,16 +25,16 @@ public class AccountRequestDTO {
 	public void setMovements(List<MovementDTO> movements) {
 		this.movements = movements;
 	}
-	public List<ExpenseIncomeDTO> getExpenses() {
+	public Set<ExpenseIncomeDTO> getExpenses() {
 		return expenses;
 	}
-	public void setExpenses(List<ExpenseIncomeDTO> expenses) {
+	public void setExpenses(Set<ExpenseIncomeDTO> expenses) {
 		this.expenses = expenses;
 	}
-	public List<ExpenseIncomeDTO> getIncomes() {
+	public Set<ExpenseIncomeDTO> getIncomes() {
 		return incomes;
 	}
-	public void setIncomes(List<ExpenseIncomeDTO> incomes) {
+	public void setIncomes(Set<ExpenseIncomeDTO> incomes) {
 		this.incomes = incomes;
 	}
 	

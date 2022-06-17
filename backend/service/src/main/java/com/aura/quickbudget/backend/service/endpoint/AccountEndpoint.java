@@ -7,12 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.aura.quickbudget.backend.model.api.Account;
-import com.aura.quickbudget.backend.model.api.repository.AccountRepository;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowable;
-import com.aura.quickbudget.backend.model.api.repository.exception.AccountThrowableNotFound;
-import com.aura.quickbudget.backend.service.endpoint.operationdto.AccountRequestDTO;
-import com.aura.quickbudget.backend.service.endpoint.operationdto.UpdateAccountDTO;
-import com.aura.quickbudget.backend.service.service.AccountSyncService;
+import com.aura.quickbudget.backend.model.service.AccountSyncService;
+import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;
+import com.aura.quickbudget.backend.model.service.dto.updateaccount.UpdateAccountDTO;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowable;
+import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
+import com.aura.quickbudget.backend.service.repository.api.AccountRepository;
 
 import javax.inject.Named;
 import javax.security.auth.login.AccountNotFoundException;

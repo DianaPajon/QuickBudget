@@ -11,7 +11,7 @@ public interface ExpenseIncome {
 	public String getName();
 	public BigDecimal getAmount();
 	public Date getInitialDate();
-	public Boolean isPeriodic();
+	public boolean isPeriodic();
 	public TimePeriod getPeriod();
 	public Integer getInstallments();
 }

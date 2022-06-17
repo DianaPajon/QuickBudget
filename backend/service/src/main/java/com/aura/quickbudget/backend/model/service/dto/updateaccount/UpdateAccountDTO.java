@@ -1,7 +1,11 @@
-package com.aura.quickbudget.backend.service.endpoint.operationdto;
+package com.aura.quickbudget.backend.model.service.dto.updateaccount;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+
+import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
+import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
 
 public class UpdateAccountDTO implements Serializable {
 
@@ -9,12 +13,14 @@ public class UpdateAccountDTO implements Serializable {
 	
 	private String accountName;
 	private List<MovementDTO> newMovements;
-	private List<ExpenseIncomeDTO> newExpenses;
-	private List<ExpenseIncomeDTO> newIncomes;
+	private Set<ExpenseIncomeDTO> newExpenses;
+	private Set<ExpenseIncomeDTO> newIncomes;
 	
 	
-	public UpdateAccountDTO(String accountName, List<MovementDTO> newMovements, List<ExpenseIncomeDTO> newExpenses,
-			List<ExpenseIncomeDTO> newIncomes) {
+	public UpdateAccountDTO() {}
+	
+	public UpdateAccountDTO(String accountName, List<MovementDTO> newMovements, Set<ExpenseIncomeDTO> newExpenses,
+			Set<ExpenseIncomeDTO> newIncomes) {
 		this.accountName = accountName;
 		this.newMovements = newMovements;
 		this.newExpenses = newExpenses;
@@ -37,19 +43,19 @@ public class UpdateAccountDTO implements Serializable {
 		this.newMovements = newMovements;
 	}
 	
-	public List<ExpenseIncomeDTO> getNewExpenses() {
+	public Set<ExpenseIncomeDTO> getNewExpenses() {
 		return newExpenses;
 	}
 	
-	public void setNewExpenses(List<ExpenseIncomeDTO> newExpenses) {
+	public void setNewExpenses(Set<ExpenseIncomeDTO> newExpenses) {
 		this.newExpenses = newExpenses;
 	}
 	
-	public List<ExpenseIncomeDTO> getNewIncomes() {
+	public Set<ExpenseIncomeDTO> getNewIncomes() {
 		return newIncomes;
 	}
 	
-	public void setNewIncomes(List<ExpenseIncomeDTO> newIncomes) {
+	public void setNewIncomes(Set<ExpenseIncomeDTO> newIncomes) {
 		this.newIncomes = newIncomes;
 	}
 	

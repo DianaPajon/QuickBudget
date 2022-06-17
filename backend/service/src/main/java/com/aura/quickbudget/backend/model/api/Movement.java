@@ -9,8 +9,8 @@ import com.quickbudget.backend.model.api.Account;
 
 public interface Movement {
 	public BigDecimal getValue();
+	public String getMovementId();
 	public Date getDate();
-	public Account getAccount();
-	public Set<ExpenseIncome> getRelatedIncomes();
-	public Set<ExpenseIncome> getRelatedExpenses();
+	public Set<String> getRelatedIncomes();
+	public Set<String> getRelatedExpenses();
 }

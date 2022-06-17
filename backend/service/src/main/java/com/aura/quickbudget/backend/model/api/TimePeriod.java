@@ -23,6 +23,9 @@ public class TimePeriod {
 	public void setYears(Integer years) {
 		this.years = years;
 	}
+	
+	public TimePeriod() {}
+	
 	public TimePeriod(Integer days, Integer months, Integer years) {
 		super();
 		this.days = days;

@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.service;
+package com.aura.quickbudget.backend.service.main;
 
 import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.glassfish.jersey.server.ResourceConfig;
