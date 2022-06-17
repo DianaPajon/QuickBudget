@@ -14,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.aura.quickbudget.backend.model.api.Account;
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;
 import com.aura.quickbudget.backend.model.api.Movement;
-import com.aura.quickbudget.backend.model.service.AccountSyncService;
+import com.aura.quickbudget.backend.model.service.SyncAccountService;
+import com.aura.quickbudget.backend.model.service.SyncAuthorizationToken;
 import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
 import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
 import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;
@@ -23,15 +24,23 @@ import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInva
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidMovement;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
+import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 import com.aura.quickbudget.backend.service.repository.api.AccountRepository;
 
-public class AccountSyncServiceImpl implements AccountSyncService{
+public class SyncAccountServiceImpl implements SyncAccountService{
 
 	@Autowired
 	private AccountRepository accountRepo;
 	
 	@Override
-	public AccountRequestDTO getAccount(String accountName) throws AccountThrowableNotFound {
+	public AccountRequestDTO getAccount(String accountName, SyncAuthorizationToken toekn) 
+			throws 
+				AccountThrowableNotFound,
+				UnauthorizedException
+	{
+		if(SyncAuthorizationToken.GET_ACCOUNT.equals(toekn)) {
+			throw new UnauthorizedException();
+		}
 		//I fetch the account,  will throw exception here if not found, it is expected.
 		Account requested = accountRepo.getAccount(accountName);
 		AccountRequestDTO ret = new AccountRequestDTO();
@@ -50,14 +59,18 @@ public class AccountSyncServiceImpl implements AccountSyncService{
 	}
 
 	@Override
-	public void updateAccount(UpdateAccountDTO updateDTO)
+	public void updateAccount(UpdateAccountDTO updateDTO, SyncAuthorizationToken toekn)
 			throws 
 				AccountThrowableMovementsNotConsecutive, 
 				AccountThrowableNotFound, 
 				AccountThrowableInvalidMovement, 
 				AccountThrowableMovementsNotConsecutive, 
-				AccountThrowableInvalidExpenseIncome 
+				AccountThrowableInvalidExpenseIncome,
+				UnauthorizedException
 	{
+		if(SyncAuthorizationToken.SYNC_ACCOUNT.equals(toekn)) {
+			throw new UnauthorizedException();
+		}
 		Account toUpdate = accountRepo.getAccount(updateDTO.getAccountName());
 		
 		//First i check that movements are valid and I update them.

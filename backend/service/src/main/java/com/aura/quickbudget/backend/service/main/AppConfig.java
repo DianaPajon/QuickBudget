@@ -13,7 +13,9 @@ import javax.inject.Named;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan("com.quickbudget.backend-service.repository")
+@ComponentScan(
+		"com.aura.quickbudget.backend.service.*"
+)
 public class AppConfig {
     @Inject
     DataSourceProperties dataSourceProperties;

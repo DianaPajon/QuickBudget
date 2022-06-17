@@ -6,15 +6,21 @@ import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInva
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidMovement;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
+import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 
-public interface AccountSyncService {
-	public AccountRequestDTO getAccount(String accountName) throws AccountThrowableNotFound;
-	public void updateAccount(UpdateAccountDTO updateDTO) 
+public interface SyncAccountService {
+	public AccountRequestDTO getAccount(String accountName, SyncAuthorizationToken token) 
+			throws 
+				AccountThrowableNotFound,
+				UnauthorizedException;
+	
+	public void updateAccount(UpdateAccountDTO updateDTO, SyncAuthorizationToken token) 
 			throws 			
 				AccountThrowableMovementsNotConsecutive, 
 				AccountThrowableNotFound, 
 				AccountThrowableInvalidMovement, 
 				AccountThrowableMovementsNotConsecutive, 
-				AccountThrowableInvalidExpenseIncome; 
+				AccountThrowableInvalidExpenseIncome,
+				UnauthorizedException; 
 
 }
