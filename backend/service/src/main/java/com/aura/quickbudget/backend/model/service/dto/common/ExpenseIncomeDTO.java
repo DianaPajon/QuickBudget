@@ -114,6 +114,4 @@ public class ExpenseIncomeDTO implements Serializable {
 		return Objects.equals(this.getEeid(), other.getEeid());
 	}
 	
-	
-	
 }

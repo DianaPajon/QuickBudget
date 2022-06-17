@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.Set;
 
 
+
 public interface Movement {
 	public BigDecimal getValue();
 	public String getMovementId();
 	public Date getDate();
 	public Set<String> getRelatedIncomes();
 	public Set<String> getRelatedExpenses();
+	
+	
 }
