@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.aura.quickbudget.backend.model.api.Account;
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;
@@ -27,6 +28,7 @@ import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotF
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 import com.aura.quickbudget.backend.service.repository.api.AccountRepository;
 
+@Component
 public class SyncAccountServiceImpl implements SyncAccountService{
 
 	@Autowired
@@ -38,7 +40,7 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 				AccountThrowableNotFound,
 				UnauthorizedException
 	{
-		if(SyncAuthorizationToken.GET_ACCOUNT.equals(toekn)) {
+		if(!SyncAuthorizationToken.GET_ACCOUNT.equals(toekn)) {
 			throw new UnauthorizedException();
 		}
 		//I fetch the account,  will throw exception here if not found, it is expected.
@@ -68,7 +70,7 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 				AccountThrowableInvalidExpenseIncome,
 				UnauthorizedException
 	{
-		if(SyncAuthorizationToken.SYNC_ACCOUNT.equals(toekn)) {
+		if(!SyncAuthorizationToken.SYNC_ACCOUNT.equals(toekn)) {
 			throw new UnauthorizedException();
 		}
 		Account toUpdate = accountRepo.getAccount(updateDTO.getAccountName());

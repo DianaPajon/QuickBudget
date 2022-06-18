@@ -26,7 +26,8 @@ public class AccountRepositoryImpl implements  AccountRepository {
 	Account only = new Account() {
 
 		List<Movement> movementList = new ArrayList<>();
-		
+		Set<ExpenseIncome> expenses = new HashSet<>();
+		Set<ExpenseIncome> incomes= new HashSet<>();
 		@Override
 		public String getName() {
 			return "aura";
@@ -35,37 +36,35 @@ public class AccountRepositoryImpl implements  AccountRepository {
 		@Override
 		public List<Movement> getMovements() {
 			// TODO Auto-generated method stub
-			return null;
+			return this.movementList;
 		}
 
 		@Override
 		public void setMovements(List<Movement> movements) {
-			// TODO Auto-generated method stub
+			this.movementList = movements;
 			
 		}
 
 		@Override
 		public Set<ExpenseIncome> getIncomes() {
 			// TODO Auto-generated method stub
-			return null;
+			return this.incomes;
 		}
 
 		@Override
 		public void setIncomes(Set<ExpenseIncome> incomes) {
-			// TODO Auto-generated method stub
+			this.incomes = incomes;
 			
 		}
 
 		@Override
 		public Set<ExpenseIncome> getExpenses() {
-			// TODO Auto-generated method stub
-			return null;
+			return this.expenses;
 		}
 
 		@Override
 		public void setExpenses(Set<ExpenseIncome> expenses) {
-			// TODO Auto-generated method stub
-			
+			this.expenses = expenses;
 		}
 		
 	};
