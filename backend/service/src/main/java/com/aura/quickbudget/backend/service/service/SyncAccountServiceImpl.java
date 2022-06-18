@@ -60,6 +60,7 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 		return ret;
 	}
 
+	
 	@Override
 	public void updateAccount(UpdateAccountDTO updateDTO, SyncAuthorizationToken toekn)
 			throws 
@@ -77,8 +78,6 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 		
 		//First i check that movements are valid and I update them.
 		if(
-				toUpdate.getMovements() != null && 
-				toUpdate.getMovements().size()>0 &&
 				updateDTO.getNewMovements() != null &&
 				updateDTO.getNewMovements().size() > 0) 
 		{
@@ -90,23 +89,30 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 				}
 				
 			};
-			Date lastMovementDate = toUpdate.getMovements().stream().max(dateComparator).get().getDate();
-			Comparator<MovementDTO> reverseDateComparator = new Comparator<MovementDTO>() {
 
-				@Override
-				public int compare(MovementDTO arg0, MovementDTO arg1) {
-					return arg1.getDate().compareTo(arg0.getDate());
-				}
-				
-			};
-			try {
+			if(toUpdate.getMovements() == null) {
+				toUpdate.setMovements(new ArrayList<Movement>());
+			}
+			if(toUpdate.getMovements().size() != 0) {
+				Date lastMovementDate = toUpdate.getMovements().stream().max(dateComparator).get().getDate();
+				Comparator<MovementDTO> reverseDateComparator = new Comparator<MovementDTO>() {
+
+					@Override
+					public int compare(MovementDTO arg0, MovementDTO arg1) {
+						return arg1.getDate().compareTo(arg0.getDate());
+					}
+					
+				};
 				Date firstDtoMovementDate = updateDTO.getNewMovements().stream().max(reverseDateComparator).get().getDate();
 				if(!lastMovementDate.before(firstDtoMovementDate)) {
 					throw new AccountThrowableMovementsNotConsecutive();
 				}
+			}
+			
+			try {
 				List<Movement> newMovements = new ArrayList<>();
 				for(MovementDTO mDTO : updateDTO.getNewMovements()) {
-					Movement m = null; //TODO: Make concrete class.
+					Movement m = new Movement();
 					MovementDTO.fillWithData(mDTO, m);
 					newMovements.add(m);
 				}
@@ -119,27 +125,31 @@ public class SyncAccountServiceImpl implements SyncAccountService{
 		}
 		
 		//Now, I add the new expenses.
-		Set<ExpenseIncomeDTO> newExpensesDTOs = updateDTO.getNewExpenses();
-		Set<ExpenseIncome> newExpenses = new HashSet<>();
-		for(ExpenseIncomeDTO eDTO : newExpensesDTOs) {
-			ExpenseIncome ei = null;
-			ExpenseIncomeDTO.fillWithData(eDTO, ei);
-			newExpenses.add(ei);
+		if(updateDTO.getNewExpenses() != null) {
+
+			Set<ExpenseIncomeDTO> newExpensesDTOs = updateDTO.getNewExpenses();
+			Set<ExpenseIncome> newExpenses = new HashSet<>();
+			for(ExpenseIncomeDTO eDTO : newExpensesDTOs) {
+				ExpenseIncome ei = null;
+				ExpenseIncomeDTO.fillWithData(eDTO, ei);
+				newExpenses.add(ei);
+			}
+			toUpdate.getExpenses().addAll(newExpenses);	
 		}
-		toUpdate.getExpenses().addAll(newExpenses);
 		
 		//And finally the incomes
-		Set<ExpenseIncomeDTO> newIncomeDTOS = updateDTO.getNewExpenses();
-		Set<ExpenseIncome> newIncomes = new HashSet<>();
-		for(ExpenseIncomeDTO eDTO : newIncomeDTOS) {
-			ExpenseIncome ei = null;
-			ExpenseIncomeDTO.fillWithData(eDTO, ei);
-			newIncomes.add(ei);
+		if(updateDTO.getNewIncomes() != null) {
+			Set<ExpenseIncomeDTO> newIncomeDTOS = updateDTO.getNewExpenses();
+			Set<ExpenseIncome> newIncomes = new HashSet<>();
+			for(ExpenseIncomeDTO eDTO : newIncomeDTOS) {
+				ExpenseIncome ei = null;
+				ExpenseIncomeDTO.fillWithData(eDTO, ei);
+				newIncomes.add(ei);
+			}
+			toUpdate.getIncomes().addAll(newIncomes);
+			
+			accountRepo.updateAccount(toUpdate);
 		}
-		toUpdate.getIncomes().addAll(newIncomes);
-		
-		accountRepo.updateAccount(toUpdate);
-		
 		return;
 	}		
 }

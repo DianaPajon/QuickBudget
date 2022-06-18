@@ -44,13 +44,16 @@ public class AccountEndpoint {
     @Autowired 
     HttpServletRequest request;
 
-    @GetMapping(path="/{accountId}", produces="application/json")
-    public ResponseEntity<AccountRequestDTO> getAccount(@PathVariable("accountId") String accountId){
+    interface GeneralEndpoint<ResponseFormat> {
+    	public ResponseFormat run(String userId) throws AccountThrowable;
+    }
+    
+    private <Entity> ResponseEntity<Entity> getResponse(GeneralEndpoint<Entity> endpoint){
     	String userId  = null;
     	try {
         	userId = request.getHeader("quickbudget-userId");
-        	AccountRequestDTO response =  this.accountSyncService.getAccount(accountId, this.authorizer.getAccount(userId, accountId));
-        	return new ResponseEntity<>(response, HttpStatus.OK);
+        	Entity response =  endpoint.run(userId);
+        	return new ResponseEntity<>(response, response==null?HttpStatus.NO_CONTENT:HttpStatus.OK);
         } catch (AccountThrowableNotFound notFound) {
         	log.debug("Account not found: " + notFound);
         	return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -66,22 +69,26 @@ public class AccountEndpoint {
         	return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PostMapping(path="/{accountId}/update")
+    
+    @GetMapping(path="/{accountId}", produces="application/json")
+    public ResponseEntity<AccountRequestDTO> getAccount(@PathVariable("accountId") String accountId){
+    	return this.getResponse(new GeneralEndpoint<AccountRequestDTO>() {
+			@Override
+			public AccountRequestDTO run(String userId) throws AccountThrowable {
+				return accountSyncService.getAccount(accountId, authorizer.getAccount(userId, accountId));
+			}
+		});
+    }
+    
+    @PostMapping(path="/{accountId}/update", consumes = "application/json")
     public ResponseEntity<Void> updateAccount(@PathVariable("accountId") String accountId, @RequestBody UpdateAccountDTO updateDTO) {
-    	try {
-        	String userId = request.getHeader("quickbudget-userId");
-    		updateDTO.setAccountName(accountId);
-    		accountSyncService.updateAccount(updateDTO, this.authorizer.syncAccount(userId, accountId));
-    		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-    	} catch (AccountThrowableNotFound notFound) {
-        	return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } catch (AccountThrowable t){
-        	return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-        	return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    	
+    	return this.getResponse(new GeneralEndpoint<Void>() {
+			@Override
+			public Void run(String userId) throws AccountThrowable {
+				accountSyncService.updateAccount(updateDTO, authorizer.syncAccount(userId, accountId));
+				return null;
+			}
+		});
     }
   
 }

@@ -21,4 +21,9 @@ public class AccountThrowableNotFound extends AccountThrowable {
 	public Exception getPersistenceException() {
 		return this.persistenceException;
 	}
+
+	public String getName() {
+		return name;
+	}
+
 }

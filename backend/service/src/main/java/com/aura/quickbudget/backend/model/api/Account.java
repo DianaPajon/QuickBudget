@@ -1,6 +1,5 @@
 package com.aura.quickbudget.backend.model.api;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 

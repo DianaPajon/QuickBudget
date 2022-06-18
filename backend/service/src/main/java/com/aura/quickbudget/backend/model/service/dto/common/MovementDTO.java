@@ -65,6 +65,11 @@ public class MovementDTO implements Serializable {
 			throw new AccountThrowableInvalidMovement();
 		if(dto.getValue() == null)
 			throw new AccountThrowableInvalidMovement();
+		m.setValue(dto.getValue());
+		m.setDate(dto.getDate());
+		m.setMovementId(dto.getMovementId());
+		m.setRelatedExpenses(m.getRelatedExpenses());
+		m.setRelatedIncomes(m.getRelatedIncomes());
 		
 	}
 	@Override
