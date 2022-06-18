@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;

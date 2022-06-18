@@ -1,12 +1,18 @@
 package com.aura.quickbudget.backend.service.endpoint;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer;
@@ -17,18 +23,8 @@ import com.aura.quickbudget.backend.model.service.exception.AccountThrowable;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 
-import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-@Named
-@Path("/account")
+@RestController
+@RequestMapping("/account")
 public class AccountEndpoint {
     
 	/*
@@ -48,10 +44,8 @@ public class AccountEndpoint {
     @Autowired 
     HttpServletRequest request;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{accountId}")
-    public ResponseEntity<AccountRequestDTO> getAccount(@PathParam("accountId") String accountId){
+    @GetMapping(path="/{accountId}", produces="application/json")
+    public ResponseEntity<AccountRequestDTO> getAccount(@PathVariable("accountId") String accountId){
     	String userId  = null;
     	try {
         	userId = request.getHeader("quickbudget-userId");
@@ -73,10 +67,8 @@ public class AccountEndpoint {
         }
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{accountId}/update")
-    public ResponseEntity<Void> updateAccount(@PathParam("accountId") String accountId, @RequestBody UpdateAccountDTO updateDTO) {
+    @PostMapping(path="/{accountId}/update")
+    public ResponseEntity<Void> updateAccount(@PathVariable("accountId") String accountId, @RequestBody UpdateAccountDTO updateDTO) {
     	try {
         	String userId = request.getHeader("quickbudget-userId");
     		updateDTO.setAccountName(accountId);
