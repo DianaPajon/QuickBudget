@@ -30,7 +30,7 @@ public class AccountEndpoint {
 	/*
 	private String onlyAccountKey = "onlyaccountkey";
 	
-	Session will be checked in an external layer.
+	Session will be checked in an previous layer.
 	*/
     
 	Logger log = LoggerFactory.getLogger(AccountEndpoint.class);

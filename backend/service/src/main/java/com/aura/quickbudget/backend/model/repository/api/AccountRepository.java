@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.service.repository.api;
+package com.aura.quickbudget.backend.model.repository.api;
 
 
 import com.aura.quickbudget.backend.model.api.Account;

@@ -5,33 +5,48 @@ import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer;
-import com.aura.quickbudget.backend.model.service.SyncAuthorizationToken;
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 
 @Component
 public class OnlyAccessAuthorizer implements SyncAccountAuthorizer {
 
 	@Override
-	public SyncAuthorizationToken getAccount(String username, String accountId) throws UnauthorizedException {
+	public GetAccountToken getAccount(String username, String accountId) throws UnauthorizedException {
 		if(
 			!Objects.equals(username, "diana") || 
 			!Objects.equals(accountId, "aura")
 		) {
 			throw new UnauthorizedException();
 		} else {
-			return SyncAuthorizationToken.GET_ACCOUNT;
+			return new GetAccountToken() {
+				String userID = username;
+
+				@Override
+				public String getAuthorizedUser() {
+					return userID;
+				}
+				
+			};
 		}
 	}
 
 	@Override
-	public SyncAuthorizationToken syncAccount(String username, String accountId) throws UnauthorizedException  {
+	public SyncAccountToken syncAccount(String username, String accountId) throws UnauthorizedException  {
 		if(
 			!Objects.equals(username, "diana") || 
 			!Objects.equals(accountId, "aura")
 		) {
 			throw new UnauthorizedException();
 		} else {
-			return SyncAuthorizationToken.SYNC_ACCOUNT;
+			return new SyncAccountToken() {
+				String userID = username;
+				
+				@Override
+				public String getAuthorizedUser() {
+					return userID;
+				}
+				
+			};
 		}
 	}
 

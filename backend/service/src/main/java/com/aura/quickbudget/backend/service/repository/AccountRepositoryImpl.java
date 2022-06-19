@@ -10,9 +10,9 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import com.aura.quickbudget.backend.model.api.ExpenseIncome;
-import com.aura.quickbudget.backend.service.repository.api.AccountRepository;
 import com.aura.quickbudget.backend.model.api.Account;
 import com.aura.quickbudget.backend.model.api.Movement;
+import com.aura.quickbudget.backend.model.repository.api.AccountRepository;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 
@@ -25,6 +25,7 @@ public class AccountRepositoryImpl implements  AccountRepository {
 		List<Movement> movementList = new ArrayList<>();
 		Set<ExpenseIncome> expenses = new HashSet<>();
 		Set<ExpenseIncome> incomes= new HashSet<>();
+		
 		@Override
 		public String getName() {
 			return "aura";
