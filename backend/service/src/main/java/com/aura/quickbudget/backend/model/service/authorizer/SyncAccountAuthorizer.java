@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.model.service;
+package com.aura.quickbudget.backend.model.service.authorizer;
 
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 

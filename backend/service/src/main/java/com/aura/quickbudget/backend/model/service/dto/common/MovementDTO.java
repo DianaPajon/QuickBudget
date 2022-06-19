@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
-import com.aura.quickbudget.backend.model.api.Movement;
+import com.aura.quickbudget.backend.model.entities.Movement;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidMovement;
 
 public class MovementDTO implements Serializable {

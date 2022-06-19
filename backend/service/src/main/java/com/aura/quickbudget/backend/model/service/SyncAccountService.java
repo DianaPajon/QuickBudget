@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.aura.quickbudget.backend.model.api.Account;
-import com.aura.quickbudget.backend.model.api.ExpenseIncome;
-import com.aura.quickbudget.backend.model.api.Movement;
-import com.aura.quickbudget.backend.model.repository.api.AccountRepository;
-import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer.GetAccountToken;
-import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer.SyncAccountToken;
+import com.aura.quickbudget.backend.model.entities.Account;
+import com.aura.quickbudget.backend.model.entities.ExpenseIncome;
+import com.aura.quickbudget.backend.model.entities.Movement;
+import com.aura.quickbudget.backend.model.repository.AccountRepository;
+import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer.GetAccountToken;
+import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer.SyncAccountToken;
 import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
 import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
 import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;

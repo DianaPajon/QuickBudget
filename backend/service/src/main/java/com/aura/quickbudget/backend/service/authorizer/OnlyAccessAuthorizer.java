@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Component;
 
-import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer;
+import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer;
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
 
 @Component

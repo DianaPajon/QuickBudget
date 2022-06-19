@@ -9,10 +9,10 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
-import com.aura.quickbudget.backend.model.api.ExpenseIncome;
-import com.aura.quickbudget.backend.model.api.Account;
-import com.aura.quickbudget.backend.model.api.Movement;
-import com.aura.quickbudget.backend.model.repository.api.AccountRepository;
+import com.aura.quickbudget.backend.model.entities.Account;
+import com.aura.quickbudget.backend.model.entities.ExpenseIncome;
+import com.aura.quickbudget.backend.model.entities.Movement;
+import com.aura.quickbudget.backend.model.repository.AccountRepository;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 

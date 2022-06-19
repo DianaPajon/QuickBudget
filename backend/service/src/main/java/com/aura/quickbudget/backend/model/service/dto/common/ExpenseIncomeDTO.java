@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import com.aura.quickbudget.backend.model.api.ExpenseIncome;
-import com.aura.quickbudget.backend.model.api.TimePeriod;
+import com.aura.quickbudget.backend.model.entities.ExpenseIncome;
+import com.aura.quickbudget.backend.model.entities.TimePeriod;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidExpenseIncome;
 
 public class ExpenseIncomeDTO implements Serializable {

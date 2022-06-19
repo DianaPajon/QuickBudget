@@ -1,7 +1,7 @@
-package com.aura.quickbudget.backend.model.repository.api;
+package com.aura.quickbudget.backend.model.repository;
 
 
-import com.aura.quickbudget.backend.model.api.Account;
+import com.aura.quickbudget.backend.model.entities.Account;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aura.quickbudget.backend.model.service.SyncAccountAuthorizer;
 import com.aura.quickbudget.backend.model.service.SyncAccountService;
+import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer;
 import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;
 import com.aura.quickbudget.backend.model.service.dto.updateaccount.UpdateAccountDTO;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowable;

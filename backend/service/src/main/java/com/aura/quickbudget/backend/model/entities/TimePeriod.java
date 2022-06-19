@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.model.api;
+package com.aura.quickbudget.backend.model.entities;
 
 public class TimePeriod {
 	private Integer days;
