@@ -1,13 +1,13 @@
-package com.aura.quickbudget.backend.model.service.dto.updateaccount;
+package com.aura.quickbudget.backend.model.service.interf.accountsync;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
-import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
+import com.aura.quickbudget.backend.model.service.dto.ExpenseIncomeDTO;
+import com.aura.quickbudget.backend.model.service.dto.MovementDTO;
 
-public class UpdateAccountDTO implements Serializable {
+public class UpdateAccountInterf implements Serializable {
 
 	private static final long serialVersionUID = 4256793324488769965L;
 	
@@ -17,9 +17,9 @@ public class UpdateAccountDTO implements Serializable {
 	private Set<ExpenseIncomeDTO> newIncomes;
 	
 	
-	public UpdateAccountDTO() {}
+	public UpdateAccountInterf() {}
 	
-	public UpdateAccountDTO(String accountName, List<MovementDTO> newMovements, Set<ExpenseIncomeDTO> newExpenses,
+	public UpdateAccountInterf(String accountName, List<MovementDTO> newMovements, Set<ExpenseIncomeDTO> newExpenses,
 			Set<ExpenseIncomeDTO> newIncomes) {
 		this.accountName = accountName;
 		this.newMovements = newMovements;

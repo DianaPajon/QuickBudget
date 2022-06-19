@@ -1,4 +1,4 @@
-package com.aura.quickbudget.backend.model.service.dto.common;
+package com.aura.quickbudget.backend.model.service.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

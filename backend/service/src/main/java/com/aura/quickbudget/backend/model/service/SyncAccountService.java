@@ -15,19 +15,19 @@ import com.aura.quickbudget.backend.model.entities.Movement;
 import com.aura.quickbudget.backend.model.repository.AccountRepository;
 import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer.GetAccountToken;
 import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer.SyncAccountToken;
-import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
-import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
-import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;
-import com.aura.quickbudget.backend.model.service.dto.updateaccount.UpdateAccountDTO;
+import com.aura.quickbudget.backend.model.service.dto.ExpenseIncomeDTO;
+import com.aura.quickbudget.backend.model.service.dto.MovementDTO;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidExpenseIncome;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableInvalidMovement;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableMovementsNotConsecutive;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
+import com.aura.quickbudget.backend.model.service.interf.accountsync.AccountRequestInterf;
+import com.aura.quickbudget.backend.model.service.interf.accountsync.UpdateAccountInterf;
 
 public interface SyncAccountService {
 	
-	public default AccountRequestDTO getAccount(String accountName, GetAccountToken token) 
+	public default AccountRequestInterf getAccount(String accountName, GetAccountToken token) 
 			throws 
 				AccountThrowableNotFound,
 				UnauthorizedException
@@ -37,7 +37,7 @@ public interface SyncAccountService {
 		}
 		//I fetch the account,  will throw exception here if not found, it is expected.
 		Account requested = this.getAccountRepository().getAccount(accountName);
-		AccountRequestDTO ret = new AccountRequestDTO();
+		AccountRequestInterf ret = new AccountRequestInterf();
 		ret.setAccountName(requested.getName());
 	
 		List<Movement> movements = requested.getMovements();
@@ -52,7 +52,7 @@ public interface SyncAccountService {
 		return ret;
 	}
 	
-	public default void updateAccount(UpdateAccountDTO updateDTO, SyncAccountToken token) 
+	public default void updateAccount(UpdateAccountInterf updateDTO, SyncAccountToken token) 
 			throws 			
 				AccountThrowableMovementsNotConsecutive, 
 				AccountThrowableNotFound, 

@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aura.quickbudget.backend.model.service.SyncAccountService;
 import com.aura.quickbudget.backend.model.service.authorizer.SyncAccountAuthorizer;
-import com.aura.quickbudget.backend.model.service.dto.getaccount.AccountRequestDTO;
-import com.aura.quickbudget.backend.model.service.dto.updateaccount.UpdateAccountDTO;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowable;
 import com.aura.quickbudget.backend.model.service.exception.AccountThrowableNotFound;
 import com.aura.quickbudget.backend.model.service.exception.UnauthorizedException;
+import com.aura.quickbudget.backend.model.service.interf.accountsync.AccountRequestInterf;
+import com.aura.quickbudget.backend.model.service.interf.accountsync.UpdateAccountInterf;
 
 @RestController
 @RequestMapping("/account")
@@ -71,17 +71,17 @@ public class AccountEndpoint {
     }
     
     @GetMapping(path="/{accountId}", produces="application/json")
-    public ResponseEntity<AccountRequestDTO> getAccount(@PathVariable("accountId") String accountId){
-    	return this.getResponse(new GeneralEndpoint<AccountRequestDTO>() {
+    public ResponseEntity<AccountRequestInterf> getAccount(@PathVariable("accountId") String accountId){
+    	return this.getResponse(new GeneralEndpoint<AccountRequestInterf>() {
 			@Override
-			public AccountRequestDTO run(String userId) throws AccountThrowable {
+			public AccountRequestInterf run(String userId) throws AccountThrowable {
 				return accountSyncService.getAccount(accountId, authorizer.getAccount(userId, accountId));
 			}
 		});
     }
     
     @PostMapping(path="/{accountId}/update", consumes = "application/json")
-    public ResponseEntity<Void> updateAccount(@PathVariable("accountId") String accountId, @RequestBody UpdateAccountDTO updateDTO) {
+    public ResponseEntity<Void> updateAccount(@PathVariable("accountId") String accountId, @RequestBody UpdateAccountInterf updateDTO) {
     	return this.getResponse(new GeneralEndpoint<Void>() {
 			@Override
 			public Void run(String userId) throws AccountThrowable {

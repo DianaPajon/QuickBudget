@@ -1,12 +1,12 @@
-package com.aura.quickbudget.backend.model.service.dto.getaccount;
+package com.aura.quickbudget.backend.model.service.interf.accountsync;
 
 import java.util.List;
 import java.util.Set;
 
-import com.aura.quickbudget.backend.model.service.dto.common.ExpenseIncomeDTO;
-import com.aura.quickbudget.backend.model.service.dto.common.MovementDTO;
+import com.aura.quickbudget.backend.model.service.dto.ExpenseIncomeDTO;
+import com.aura.quickbudget.backend.model.service.dto.MovementDTO;
 
-public class AccountRequestDTO {
+public class AccountRequestInterf {
 	
 	private String accountName;
 	private List<MovementDTO> movements;
